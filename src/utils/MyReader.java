@@ -2,7 +2,6 @@ package utils;
 
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.Arrays;
 
 public class MyReader {
 
@@ -26,10 +25,7 @@ public class MyReader {
             }
             else{
                 int length = inputStream.available();
-                //slice = new byte[length];
-                inputStream.read(slice);
-                //slice = Arrays.copyOf(slice, length);
-                return length;
+                return inputStream.read(slice);
             }
         }
         catch(IOException exception){

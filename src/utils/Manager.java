@@ -31,7 +31,7 @@ public class Manager {
     }
 
     public void manageExecuting(MyReader reader, Worker worker, MyWriter writer){
-        byte[] buffer;// = new byte[buffer_size];
+        byte[] buffer;
         do {
             if (reader.available() >= buffer_size)
                 buffer = new byte[buffer_size];
@@ -41,12 +41,6 @@ public class Manager {
 
             writer.writeByteArray(worker.executeTranslation(buffer));
         } while (reader.available() > 0);
-
-//        while(reader.readByteArray(buffer) > 0){
-//            writer.writeByteArray(worker.executeTranslation(buffer));
-//
-//            buffer = new byte[buffer_size];
-//        }
     }
 
     public int getBuffer_size(){

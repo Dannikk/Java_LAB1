@@ -10,9 +10,8 @@ import java.util.Map;
 
 public class SyntaxParser {
 
-    //private static final String DELIMITER = "=|(\\s+)";
 
-    static final Map<String, String> Parse(String file_path){
+    static Map<String, String> Parse(String file_path){
 
         final Map<String, String> parameters = new HashMap<>();
 

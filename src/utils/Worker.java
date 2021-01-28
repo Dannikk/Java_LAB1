@@ -10,11 +10,11 @@ import java.util.Map;
 
 public class Worker {
 
-    private Boolean mode;                                       //True if encoding, False if decoding
-    private Map<String, String> parameters;
-    private Map<Byte, Byte> sub_table = new HashMap<>();
+    private Boolean mode;                                //True if encoding, False if decoding
+    private final Map<String, String> parameters;
+    private final Map<Byte, Byte> sub_table = new HashMap<>();
     private final int sub_table_size = 256;
-    private File sub_table_file, output_file;
+    private File sub_table_file;
 
     public Worker(String config_path) {
         parameters = SyntaxParser.Parse(config_path);
@@ -52,7 +52,7 @@ public class Worker {
         }
 
         if (parameters.get(WorkerGrammar.output) != null) {
-            output_file = new File(parameters.get(WorkerGrammar.output));
+            File output_file = new File(parameters.get(WorkerGrammar.output));
             if (!(output_file.exists() & output_file.canWrite())) {
                 System.out.println("Cannot read the file or file is not exists!");
                 return false;
@@ -69,7 +69,7 @@ public class Worker {
         byte EOF = -1;
         int counter = 0;
         try (FileInputStream in_stream = new FileInputStream(sub_table_file)){
-            int encoded = EOF, value = EOF;
+            int encoded, value;
             while((encoded = in_stream.read()) != EOF & (value = in_stream.read()) != EOF){
                 counter++;
                 if (mode){
@@ -78,7 +78,6 @@ public class Worker {
                 else{
                     sub_table.put((byte)value, (byte)encoded);
                 }
-                //in_stream.read();
             }
         }
         catch (IOException exception) {
@@ -100,8 +99,6 @@ public class Worker {
 
         return output;
     }
-
-    public Boolean getMode(){return mode;}
 
     public Map<String, String> getParameters(){return parameters;}
 
