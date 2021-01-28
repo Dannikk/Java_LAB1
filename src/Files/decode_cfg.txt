@@ -1,0 +1,3 @@
+mode=false
+output=src\\Files\\decode_out.txt
+sub_table=src\\Files\\sub_table.txt

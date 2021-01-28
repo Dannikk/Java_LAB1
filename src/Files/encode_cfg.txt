@@ -1,0 +1,3 @@
+mode=true
+output=src\\Files\\encode_out.txt
+sub_table=src\\Files\\sub_table.txt
