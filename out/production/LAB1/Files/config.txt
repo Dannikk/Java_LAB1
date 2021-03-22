@@ -1,4 +1,0 @@
-input=src\\Files\\input.txt
-encode_cfg=src\\Files\\encode_cfg.txt
-decode_cfg=src\\Files\\decode_cfg.txt
-buffer_size=10
